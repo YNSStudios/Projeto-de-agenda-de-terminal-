@@ -91,7 +91,7 @@ if escolha == 1:
         id_encontrado = False
 
         for ids in tarefas:
-            if ids == id:
+            if ids['id'] == id:
                 id_encontrado = True
                 break
 
