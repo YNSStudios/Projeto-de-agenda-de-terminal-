@@ -258,6 +258,7 @@ elif escolha == 4:
     while True:
 
         ex_tarefa = int(input("Digite o \033[31mid\033[0m da tarefa que deseja excluir: "))
+        print()
         
         tarefa_ex = None
 
@@ -268,7 +269,10 @@ elif escolha == 4:
 
         if tarefa_ex is not None:
             break
-
+        else:
+            print("\033[31mID não encontrado\033[0m, tente novamente !")
+            print()
+            
     tarefas.remove(tarefa_ex)
 
     with open('tarefas.json', 'w', encoding='utf-8') as dados:
