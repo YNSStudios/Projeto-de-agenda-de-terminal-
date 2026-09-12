@@ -241,3 +241,10 @@ elif escolha == 3:
         json.dump(tarefas, dados, ensure_ascii= False, indent= 6)
 
     print("\033[32mAlteração concluida !\033[0m")
+
+elif escolha == 4:
+
+    print("\033[33mExcluir tarefas\033[0m")
+    print()
+
+    
