@@ -145,9 +145,84 @@ elif escolha == 2:
 
     for tarefa in tarefas:
 
+        print('===================================')
         print(f"Nome: {tarefa['nome']}")
         print(f"Duração: {tarefa['duraçao']}")
         print(f"Horário: {tarefa['horario']}")
         print(f"Prioridade: {tarefa['prioridade']}")
         print(f"Status: {tarefa['status']}")
+        print(f"ID: {tarefa['id']}")
+        print('===================================')
+        print()
 
+elif escolha == 3: 
+
+    print("\033[33mEdição de tarefas\033[0m")
+    print()
+
+    for tarefa in tarefas:
+
+        print(f'Nome: {tarefa['nome']}')
+        print(f"ID: {tarefa['id']}")
+
+    while True:
+
+        ed_tarefa = int(input("Digite o id da tarefa que deseja alterar"))
+
+        tarefa_ed = None
+
+        for tarefa in tarefas:
+            if tarefa['id'] == ed_tarefa:
+                tarefa_ed = tarefa
+                break
+
+        if tarefa_ed is not None:
+            break
+
+    for tarefa in tarefa_ed:
+
+        print('===================================')
+        print(f"Nome: {tarefa['nome']}")
+        print(f"Duração: {tarefa['duraçao']}")
+        print(f"Horário: {tarefa['horario']}")
+        print(f"Prioridade: {tarefa['prioridade']}")
+        print('===================================')
+        print()
+
+    print("O que deseja alterar ? ")
+    print()
+
+    opçao = input("Digite sua escolha: ").lower().strip()
+    print()
+
+    if opçao == 'nome':
+
+        novo_nome = input("Digite o novo nome da tarefa: ").lower().strip()
+        print()
+
+        tarefa_ed = novo_nome
+
+    elif opçao in ['duraçao',  'duração']:
+
+        nova_duraçao = float(input("Digite a nova duração da tarefa: "))
+        print()
+
+        tarefa_ed = nova_duraçao
+
+    elif opçao in ['horario',  'horário']:
+
+        novo_horario = float(input("Digite o novo horário"))
+        print()
+
+        tarefa_ed = novo_horario
+
+    elif opçao == 'prioridade':
+
+        print("Niveis de prioridade: \033[1;31;40mMuita alta\033[0m, \033[31mAlta, \033[32mMedia, \033[33mBaixa, \033[34madiavel\033[0m. ")
+        print()
+
+        nova_prioridade = input("Digite a nova prioridade").lower().strip()
+        tarefa_ed = nova_prioridade
+
+    else:
+        print("\033[31mResultado invalido !\033[0m")
