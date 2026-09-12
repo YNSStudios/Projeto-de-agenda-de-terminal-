@@ -42,12 +42,11 @@ while True:
 
     escolha = input("digite o número da sua escolha: ")
     if escolha.isnumeric():
+        escolha = int(escolha)
         break
     else:
         print("\033[31mIsso não é um número !\033[0m")
 print()
-
-escolha = int(escolha)
 
 if escolha == 1:
 
@@ -62,7 +61,8 @@ if escolha == 1:
         duraçao = input("Digite a duração da tarefa, somente números: ").replace(
             ",", "."
         )
-        if duraçao.isnumeric():
+        if duraçao.replace(".", "", 1).isnumeric():
+            duraçao = float(duraçao)
             break
         else:
             print("\033[31mIsso não é um número !\033[0m")
@@ -77,7 +77,8 @@ if escolha == 1:
         while True:
 
             horario1 = input("Digite o horario da tarefa: ").replace(",", ".")
-            if horario1.isnumeric():
+            if horario1.replace(".", "", 1).isnumeric():
+                horario1 = float(horario1)
                 break
             else:
                 print("\033[31mIsso não é um número !\033[0m")
@@ -155,6 +156,7 @@ if escolha == 1:
 
             status_atual = input("Digite sua escolha: ")
             if status_atual.isnumeric():
+                status_atual = int(status_atual)
                 break
             else:
                 print("\033[31mIsso não é um número !\033[0m")
@@ -224,6 +226,7 @@ elif escolha == 3:
                 "Digite o \033[31mid\033[0m da tarefa que deseja alterar: "
             )
             if ed_tarefa.isnumeric():
+                ed_tarefa = int(ed_tarefa)
                 break
             else:
                 print("\033[31mIsso não é um número !\033[0m")
@@ -271,7 +274,8 @@ elif escolha == 3:
                 nova_duraçao = input("Digite a nova duração da tarefa: ").replace(
                     ",", "."
                 )
-                if nova_duraçao.isnumeric():
+                if nova_duraçao.replace(".", "", 1).isnumeric():
+                    nova_duraçao = float(nova_duraçao)
                     break
                 else:
                     print("\033[31mIsso não é um número !\033[0m")
@@ -285,7 +289,8 @@ elif escolha == 3:
             while True:
 
                 novo_horario = input("Digite o novo horário: ").replace(",", ".")
-                if novo_horario.isnumeric():
+                if novo_horario.replace(".", "", 1).isnumeric():
+                    novo_horario = float(novo_horario)
                     break
                 else:
                     print("\033[31mIsso não é um número !\033[0m")
@@ -331,7 +336,15 @@ elif escolha == 4:
 
     while True:
 
-        ex_tarefa = input("Digite o \033[31mid\033[0m da tarefa que deseja excluir: ")
+        while True:
+
+            ex_tarefa = input("Digite o \033[31mid\033[0m da tarefa que deseja excluir: ")
+            if ex_tarefa.isnumeric():
+                ex_tarefa = int(ex_tarefa)
+                break
+            else:
+                print("\033[31mIsso não é um número !\033[0m")
+
         print()
 
         tarefa_ex = None
@@ -372,6 +385,7 @@ elif escolha == 5:
 
             tarefa_es = input("Digite o id da tarefa escolhida: ")
             if tarefa_es.isnumeric():
+                tarefa_es = int(tarefa_es)
                 break
             else:
                 print("\033[31mIsso não é um número !\033[0m")
@@ -454,4 +468,4 @@ elif escolha == 6:
     print("\033[32mFinalizado.\033[0m")
 
 else:
-    print("\033[31Escolha uma das opções no catálogo.\033[0m")
+    print("\033[31mEscolha uma das opções no catálogo.\033[0m")
