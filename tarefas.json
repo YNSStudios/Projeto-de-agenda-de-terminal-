@@ -1,3 +1,18 @@
 [
-    
+      {
+            "id": 2998,
+            "nome": "ir ao mercado",
+            "duraçao": 3.3,
+            "horario": "2.0/pm",
+            "prioridade": "muito alta",
+            "status": "\u001b[31mPendente\u001b[0m"
+      },
+      {
+            "id": 6452,
+            "nome": "ir para academia",
+            "duraçao": 1.0,
+            "horario": "4.0/pm",
+            "prioridade": "alta",
+            "status": "\u001b[31mPendente\u001b[0m"
+      }
 ]

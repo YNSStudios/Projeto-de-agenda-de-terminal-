@@ -15,6 +15,8 @@ print("\033[33mGereciador de tarefas\033[0m")
 print()
 print("[1] Criar tarefas ")
 print()
+print("[2] Vizualizar tarefas ")
+print()
 
 escolha = int(input("digite o número da sua escolha: "))
 
@@ -138,13 +140,14 @@ if escolha == 1:
 
 elif escolha == 2:
 
-    print("Visão das tarefas")
+    print("\033[33mVisão das tarefas\033[0m")
     print()
 
     for tarefa in tarefas:
 
         print(f"Nome: {tarefa['nome']}")
-        print(f"Duraçção: {tarefa['duraçao']}")
+        print(f"Duração: {tarefa['duraçao']}")
         print(f"Horário: {tarefa['horario']}")
         print(f"Prioridade: {tarefa['prioridade']}")
         print(f"Status: {tarefa['status']}")
+
