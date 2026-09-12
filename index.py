@@ -361,10 +361,17 @@ elif escolha == 5:
 
             tarefa_encontrada['status'] = 'Concluida'
 
-            escolha2 = 'Comcluida'
+            historico.append(tarefa_encontrada)
 
-            with open('historico.json,', 'w', encoding='utf-8') as fontes:
-                json.dump(historico, fontes, ensure_ascii= False, indent= 6)
+            tarefas.remove(tarefa_encontrada)
+
+            escolha2 = 'Concluida'
+
+            with open('historico.json', 'w', encoding='utf-8') as fontes:
+                json.dump(historico, fontes, ensure_ascii=False, indent=6)
+
+            with open('tarefas.json', 'w', encoding='utf-8') as dados:
+                json.dump(tarefas, dados, ensure_ascii=False, indent=6)
 
             break
 
