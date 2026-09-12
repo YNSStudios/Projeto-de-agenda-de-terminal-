@@ -19,6 +19,8 @@ print("[2] Vizualizar tarefas ")
 print()
 print("[3] Editar tarefas ")
 print()
+print("[4] Excluir tarefas")
+print()
 
 escolha = int(input("digite o número da sua escolha: "))
 
@@ -247,4 +249,29 @@ elif escolha == 4:
     print("\033[33mExcluir tarefas\033[0m")
     print()
 
+    for tarefa in tarefas:
     
+        print(f'Nome: {tarefa['nome']}')
+        print(f"ID: {tarefa['id']}")
+        print()
+
+    while True:
+
+        ex_tarefa = int(input("Digite o \033[31mid\033[0m da tarefa que deseja excluir: "))
+        
+        tarefa_ex = None
+
+        for tarefa in tarefas:
+            if tarefa['id'] == ex_tarefa:
+                tarefa_ex = tarefa
+                break
+
+        if tarefa_ex is not None:
+            break
+
+    tarefas.remove(tarefa_ex)
+
+    with open('tarefas.json', 'w', encoding='utf-8') as dados:
+        json.dump(tarefas, dados, ensure_ascii= False, indent= 6)
+
+    print("\033[32mTarefa excluida !\033[0m")
