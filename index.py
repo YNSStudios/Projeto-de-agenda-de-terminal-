@@ -10,7 +10,7 @@ except FileNotFoundError:
     tarefas = []
 
 try:
-    with open('historico.json', 'r', encoding='utf-8') as fontes:
+    with open("historico.json", "r", encoding="utf-8") as fontes:
         historico = json.load(fontes)
 
 except FileNotFoundError:
@@ -38,20 +38,35 @@ print("[6] Sair")
 print()
 time.sleep(0.5)
 
-escolha = int(input("digite o número da sua escolha: "))
+while True:
+
+    escolha = input("digite o número da sua escolha: ")
+    if escolha.isnumeric():
+        break
+    else:
+        print("\033[31mIsso não é um número !\033[0m")
+print()
+
+escolha = int(escolha)
 
 if escolha == 1:
 
-    print()
     print("\033[33mCriação de tarefas\033[0m")
     print()
 
     nome = input("Digite o nome da terefa: ").lower().strip()
     print()
 
-    duraçao = float(
-        input("Digite a duração da tarefa, somente números: ").replace(",", ".")
-    )
+    while True:
+
+        duraçao = input("Digite a duração da tarefa, somente números: ").replace(
+            ",", "."
+        )
+        if duraçao.isnumeric():
+            break
+        else:
+            print("\033[31mIsso não é um número !\033[0m")
+
     print()
 
     while True:
@@ -59,7 +74,13 @@ if escolha == 1:
         print("Que horas sera seu compromisso ? ")
         print()
 
-        horario1 = float(input("Digite o horario da tarefa: ").replace(",", "."))
+        while True:
+
+            horario1 = input("Digite o horario da tarefa: ").replace(",", ".")
+            if horario1.isnumeric():
+                break
+            else:
+                print("\033[31mIsso não é um número !\033[0m")
         print()
 
         if 13 <= horario1 <= 23.59:
@@ -130,7 +151,13 @@ if escolha == 1:
     [2] vim apenas marcar
         """)
 
-        status_atual = int(input("Digite sua escolha: "))
+        while True:
+
+            status_atual = input("Digite sua escolha: ")
+            if status_atual.isnumeric():
+                break
+            else:
+                print("\033[31mIsso não é um número !\033[0m")
 
         if status_atual == 1:
             status = "\033[33mEm processo\033[0m"
@@ -191,9 +218,16 @@ elif escolha == 3:
 
     while True:
 
-        ed_tarefa = int(
-            input("Digite o \033[31mid\033[0m da tarefa que deseja alterar: ")
-        )
+        while True:
+
+            ed_tarefa = input(
+                "Digite o \033[31mid\033[0m da tarefa que deseja alterar: "
+            )
+            if ed_tarefa.isnumeric():
+                break
+            else:
+                print("\033[31mIsso não é um número !\033[0m")
+
         print()
 
         tarefa_ed = None
@@ -232,9 +266,15 @@ elif escolha == 3:
 
         elif opçao in ["duraçao", "duração"]:
 
-            nova_duraçao = float(
-                input("Digite a nova duração da tarefa: ").replace(",", ".")
-            )
+            while True:
+
+                nova_duraçao = input("Digite a nova duração da tarefa: ").replace(
+                    ",", "."
+                )
+                if nova_duraçao.isnumeric():
+                    break
+                else:
+                    print("\033[31mIsso não é um número !\033[0m")
             print()
 
             tarefa_ed["duraçao"] = nova_duraçao
@@ -242,7 +282,14 @@ elif escolha == 3:
 
         elif opçao in ["horario", "horário"]:
 
-            novo_horario = float(input("Digite o novo horário: ").replace(",", "."))
+            while True:
+
+                novo_horario = input("Digite o novo horário: ").replace(",", ".")
+                if novo_horario.isnumeric():
+                    break
+                else:
+                    print("\033[31mIsso não é um número !\033[0m")
+
             print()
 
             tarefa_ed["horario"] = novo_horario
@@ -284,9 +331,7 @@ elif escolha == 4:
 
     while True:
 
-        ex_tarefa = int(
-            input("Digite o \033[31mid\033[0m da tarefa que deseja excluir: ")
-        )
+        ex_tarefa = input("Digite o \033[31mid\033[0m da tarefa que deseja excluir: ")
         print()
 
         tarefa_ex = None
@@ -323,13 +368,19 @@ elif escolha == 5:
 
     while True:
 
-        tarefa_es = int(input("Digite o id da tarefa escolhida: "))
+        while True:
+
+            tarefa_es = input("Digite o id da tarefa escolhida: ")
+            if tarefa_es.isnumeric():
+                break
+            else:
+                print("\033[31mIsso não é um número !\033[0m")
         print()
 
         tarefa_encontrada = None
 
         for tarefa in tarefas:
-            if tarefa['id'] == tarefa_es:
+            if tarefa["id"] == tarefa_es:
                 tarefa_encontrada = tarefa
                 break
 
@@ -352,48 +403,48 @@ elif escolha == 5:
 
     while True:
 
-        es_tarefa = input('Digite sua escolha: ').lower().strip()
+        es_tarefa = input("Digite sua escolha: ").lower().strip()
         print()
 
-        if es_tarefa in ['iniciar tarefa', 'iniciar']:
+        if es_tarefa in ["iniciar tarefa", "iniciar"]:
 
-            tarefa_encontrada['status'] = 'Em processo'
+            tarefa_encontrada["status"] = "Em processo"
 
-            escolha2 = 'Iniciada'
+            escolha2 = "Iniciada"
 
-            with open('tarefas.json', 'w', encoding='utf-8') as dados:
-                    json.dump(tarefas, dados, ensure_ascii= False, indent= 6)
+            with open("tarefas.json", "w", encoding="utf-8") as dados:
+                json.dump(tarefas, dados, ensure_ascii=False, indent=6)
 
             break
 
-        elif es_tarefa in ['concluir tarefa', 'concluir']:
+        elif es_tarefa in ["concluir tarefa", "concluir"]:
 
-            tarefa_encontrada['status'] = 'Concluida'
+            tarefa_encontrada["status"] = "Concluida"
 
             historico.append(tarefa_encontrada)
 
             tarefas.remove(tarefa_encontrada)
 
-            escolha2 = 'Concluida'
+            escolha2 = "Concluida"
 
-            with open('historico.json', 'w', encoding='utf-8') as fontes:
+            with open("historico.json", "w", encoding="utf-8") as fontes:
                 json.dump(historico, fontes, ensure_ascii=False, indent=6)
 
-            with open('tarefas.json', 'w', encoding='utf-8') as dados:
+            with open("tarefas.json", "w", encoding="utf-8") as dados:
                 json.dump(tarefas, dados, ensure_ascii=False, indent=6)
 
             break
 
         else:
             print("\033[31mEscolha inválida\033[0m")
-            print()    
+            print()
 
-    print(f'\033[32mTarefa {escolha2}\033[0m')
+    print(f"\033[32mTarefa {escolha2}\033[0m")
     print()
 
 elif escolha == 6:
 
-    print("\033[33mSaindo ...\033[0m")
+    print("\033[31mSaindo ...\033[0m")
     time.sleep(1)
 
     for i in range(3):
@@ -401,3 +452,6 @@ elif escolha == 6:
         time.sleep(1.5)
 
     print("\033[32mFinalizado.\033[0m")
+
+else:
+    print("\033[31Escolha uma das opções no catálogo.\033[0m")
