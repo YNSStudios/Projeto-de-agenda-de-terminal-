@@ -11,6 +11,13 @@ try:
 except FileNotFoundError:
     tarefas = []
 
+try:
+    with open('historico.json', 'r', encoding='utf-8') as fontes:
+        historico = json.load(fontes)
+
+except FileNotFoundError:
+    historico = []
+
 print("\033[33mGereciador de tarefas\033[0m")
 print()
 print("[1] Criar tarefas ")
@@ -342,22 +349,28 @@ elif escolha == 5:
         if es_tarefa in ['iniciar tarefa', 'iniciar']:
 
             tarefa_encontrada['status'] = 'Em processo'
+
             escolha2 = 'Iniciada'
+
+            with open('tarefas.json', 'w', encoding='utf-8') as dados:
+                    json.dump(tarefas, dados, ensure_ascii= False, indent= 6)
+
             break
 
         elif es_tarefa in ['concluir tarefa', 'concluir']:
 
-            tarefas.remove(tarefa_encontrada)
+            tarefa_encontrada['status'] = 'Concluida'
 
             escolha2 = 'Comcluida'
+
+            with open('historico.json,', 'w', encoding='utf-8') as fontes:
+                json.dump(historico, fontes, ensure_ascii= False, indent= 6)
+
             break
 
         else:
             print("\033[31mEscolha inválida\033[0m")
-            print()
-
-    with open('tarefas.json', 'w', encoding='utf-8') as dados:
-        json.dump(tarefas, dados, ensure_ascii= False, indent= 6)
+            print()    
 
     print(f'\033[32mTarefa {escolha2}\033[0m')
     print()
