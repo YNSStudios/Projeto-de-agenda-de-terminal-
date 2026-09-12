@@ -17,6 +17,8 @@ print("[1] Criar tarefas ")
 print()
 print("[2] Vizualizar tarefas ")
 print()
+print("[3] Editar tarefas ")
+print()
 
 escolha = int(input("digite o número da sua escolha: "))
 
@@ -164,10 +166,11 @@ elif escolha == 3:
 
         print(f'Nome: {tarefa['nome']}')
         print(f"ID: {tarefa['id']}")
+        print()
 
     while True:
 
-        ed_tarefa = int(input("Digite o id da tarefa que deseja alterar"))
+        ed_tarefa = int(input("Digite o \033[31mid\033[0m da tarefa que deseja alterar: "))
 
         tarefa_ed = None
 
@@ -179,50 +182,62 @@ elif escolha == 3:
         if tarefa_ed is not None:
             break
 
-    for tarefa in tarefa_ed:
-
-        print('===================================')
-        print(f"Nome: {tarefa['nome']}")
-        print(f"Duração: {tarefa['duraçao']}")
-        print(f"Horário: {tarefa['horario']}")
-        print(f"Prioridade: {tarefa['prioridade']}")
-        print('===================================')
-        print()
+    print('===================================')
+    print(f"Nome: {tarefa_ed['nome']}")
+    print(f"Duração: {tarefa_ed['duraçao']}")
+    print(f"Horário: {tarefa_ed['horario']}")
+    print(f"Prioridade: {tarefa_ed['prioridade']}")
+    print('===================================')
+    print()
 
     print("O que deseja alterar ? ")
     print()
 
-    opçao = input("Digite sua escolha: ").lower().strip()
-    print()
+    while True:
 
-    if opçao == 'nome':
-
-        novo_nome = input("Digite o novo nome da tarefa: ").lower().strip()
+        opçao = input("Digite sua escolha: ").lower().strip()
         print()
 
-        tarefa_ed = novo_nome
+        if opçao == 'nome':
 
-    elif opçao in ['duraçao',  'duração']:
+            novo_nome = input("Digite o novo nome da tarefa: ").lower().strip()
+            print()
 
-        nova_duraçao = float(input("Digite a nova duração da tarefa: "))
-        print()
+            tarefa_ed['nome'] = novo_nome
+            break
 
-        tarefa_ed = nova_duraçao
+        elif opçao in ['duraçao',  'duração']:
 
-    elif opçao in ['horario',  'horário']:
+            nova_duraçao = float(input("Digite a nova duração da tarefa: ").replace(',', '.'))
+            print()
 
-        novo_horario = float(input("Digite o novo horário"))
-        print()
+            tarefa_ed['duraçao'] = nova_duraçao
+            break
 
-        tarefa_ed = novo_horario
+        elif opçao in ['horario',  'horário']:
 
-    elif opçao == 'prioridade':
+            novo_horario = float(input("Digite o novo horário: ").replace(',', '.'))
+            print()
 
-        print("Niveis de prioridade: \033[1;31;40mMuita alta\033[0m, \033[31mAlta, \033[32mMedia, \033[33mBaixa, \033[34madiavel\033[0m. ")
-        print()
+            tarefa_ed['horario'] = novo_horario
+            break
 
-        nova_prioridade = input("Digite a nova prioridade").lower().strip()
-        tarefa_ed = nova_prioridade
+        elif opçao == 'prioridade':
 
-    else:
-        print("\033[31mResultado invalido !\033[0m")
+            print("Niveis de prioridade: \033[1;31;40mMuita alta\033[0m, \033[31mAlta, \033[32mMedia, \033[33mBaixa, \033[34madiavel\033[0m. ")
+            print()
+
+            nova_prioridade = input("Digite a nova prioridade: ").lower().strip()
+            print()
+
+            tarefa_ed['prioridade'] = nova_prioridade
+            break
+
+        else:
+            print("\033[31mResultado invalido !\033[0m")
+            print()
+
+    with open('tarefas.json', 'w', encoding='utf-8') as dados:
+        json.dump(tarefas, dados, ensure_ascii= False, indent= 6)
+
+    print("\033[32mAlteração concluida !\033[0m")
