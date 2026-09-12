@@ -91,7 +91,7 @@ if escolha == 1:
         id_encontrado = False
 
         for ids in tarefas:
-            if ids['id'] == id:
+            if ids["id"] == id:
                 id_encontrado = True
                 break
 
@@ -135,3 +135,16 @@ if escolha == 1:
 
     with open("tarefas.json", "w", encoding="utf-8") as dados:
         json.dump(tarefas, dados, ensure_ascii=False, indent=6)
+
+elif escolha == 2:
+
+    print("Visão das tarefas")
+    print()
+
+    for tarefa in tarefas:
+
+        print(f"Nome: {tarefa['nome']}")
+        print(f"Duraçção: {tarefa['duraçao']}")
+        print(f"Horário: {tarefa['horario']}")
+        print(f"Prioridade: {tarefa['prioridade']}")
+        print(f"Status: {tarefa['status']}")
