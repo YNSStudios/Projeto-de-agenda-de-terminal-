@@ -2,8 +2,6 @@ import json
 import random
 import time
 
-time.sleep(0.7)
-
 try:
     with open("tarefas.json", "r", encoding="utf-8") as dados:
         tarefas = json.load(dados)
@@ -20,14 +18,25 @@ except FileNotFoundError:
 
 print("\033[33mGereciador de tarefas\033[0m")
 print()
+time.sleep(0.5)
 print("[1] Criar tarefas ")
 print()
+time.sleep(0.5)
 print("[2] Vizualizar tarefas ")
 print()
+time.sleep(0.5)
 print("[3] Editar tarefas ")
 print()
-print("[4] Excluir tarefas")
+time.sleep(0.5)
+print("[4] Excluir tarefas ")
 print()
+time.sleep(0.5)
+print("[5] Iniciar/Concluir tarefas ")
+print()
+time.sleep(0.5)
+print("[6] Sair")
+print()
+time.sleep(0.5)
 
 escolha = int(input("digite o número da sua escolha: "))
 
@@ -381,3 +390,14 @@ elif escolha == 5:
 
     print(f'\033[32mTarefa {escolha2}\033[0m')
     print()
+
+elif escolha == 6:
+
+    print("\033[33mSaindo ...\033[0m")
+    time.sleep(1)
+
+    for i in range(3):
+        print("\033[33mAguarde ...\033[0m")
+        time.sleep(1.5)
+
+    print("\033[32mFinalizado.\033[0m")
